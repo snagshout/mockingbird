@@ -1,5 +1,5 @@
 {
-    "name": "chromabits/mockingbird",
+    "name": "snagshout/mockingbird",
     "description": "PHP Mocking Utilities",
     "type": "library",
     "require": {
