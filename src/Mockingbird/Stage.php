@@ -4,12 +4,11 @@ declare(strict_types = 1);
 
 namespace Mockingbird;
 
+use Closure;
 use InvalidArgumentException;
 use LogicException;
-use Mockingbird\Exceptions\ResolutionException;
-use Closure;
-use Mockery;
 use Mockery\MockInterface;
+use Mockingbird\Exceptions\ResolutionException;
 use ReflectionClass;
 use ReflectionParameter;
 

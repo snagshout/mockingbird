@@ -3,12 +3,10 @@
 namespace Tests\Mockingbird;
 
 use LogicException;
-use Mockery as m;
+use Mockery;
 use Mockery\MockInterface;
 use Mockingbird\Exceptions\ResolutionException;
-use function Mockingbird\{ stage, on, mock, self };
-use const Mockingbird\{ SCOPE_CONSTRUCTOR, SCOPE_FUNCTION };
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Tests\Mockingbird\ExampleService\ExampleA;
 use Tests\Mockingbird\ExampleService\ExampleAInterface;
 use Tests\Mockingbird\ExampleService\ExampleB;
@@ -16,6 +14,8 @@ use Tests\Mockingbird\ExampleService\ExampleC;
 use Tests\Mockingbird\ExampleService\ExampleD;
 use Tests\Mockingbird\ExampleService\ExampleE;
 use Tests\Mockingbird\ExampleService\ExampleF;
+use function Mockingbird\{mock, on, self, stage};
+use const Mockingbird\{SCOPE_CONSTRUCTOR, SCOPE_FUNCTION};
 
 /**
  * Class StageTest.
@@ -23,7 +23,7 @@ use Tests\Mockingbird\ExampleService\ExampleF;
  * @author Eduardo Trujillo <ed@chromabits.com>
  * @package Tests\Mockingbird\ExampleService
  */
-class StageTest extends PHPUnit_Framework_TestCase
+class StageTest extends TestCase
 {
     public function testMake()
     {
@@ -43,7 +43,7 @@ class StageTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($result->getOne() === $result->getTwo());
 
         $stage->provide(new ExampleA());
-        $stage->provide(m::mock(ExampleAInterface::class));
+        $stage->provide(Mockery::mock(ExampleAInterface::class));
         /** @var ExampleC $result */
         $result = $stage->make(ExampleC::class);
 
