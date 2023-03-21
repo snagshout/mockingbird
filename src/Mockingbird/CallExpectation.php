@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Mockingbird;
 
@@ -44,10 +44,11 @@ class CallExpectation
      */
     public function __construct(
         string $methodName,
-        array $arguments,
-        $return = null,
-        int $times = 1
-    ) {
+        array  $arguments,
+               $return = null,
+        int    $times = 1
+    )
+    {
         $this->methodName = $methodName;
         $this->arguments = $arguments;
         $this->return = $return;

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Mockingbird;
 
@@ -38,11 +38,12 @@ class ThrowExpectation extends CallExpectation
      */
     public function __construct(
         string $methodName,
-        array $arguments,
-        $exceptionClass,
+        array  $arguments,
+               $exceptionClass,
         string $exceptionMessage = '',
-        int $exceptionCode = 0
-    ) {
+        int    $exceptionCode = 0
+    )
+    {
         parent::__construct($methodName, $arguments, null, 1);
 
         $this->exceptionClass = $exceptionClass;
