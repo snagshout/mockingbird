@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Mockingbird;
 
@@ -191,8 +191,8 @@ class Stage
      * @throws ResolutionException
      */
     protected function mockArguments(
-        array $parameters,
-        array $overrides = [],
+        array  $parameters,
+        array  $overrides = [],
         string $scope = null
     ): array
     {
@@ -235,8 +235,9 @@ class Stage
      */
     protected function resolveNonHintedArgument(
         ReflectionParameter $parameter,
-        string $scope = null
-    ) {
+        string              $scope = null
+    )
+    {
         $name = '$' . $parameter->getName();
 
         // First, we attempt to find a scoped definition of the argument.
@@ -265,14 +266,14 @@ class Stage
      * Resolve which mock instance to use.
      *
      * Here we mainly decide whether to use something that was provided to or
-     * go ahead an build an empty mock.
+     * go ahead and build an empty mock.
      *
      * @param ReflectionClass $type
-     * @param string $scope
+     * @param string|null $scope
      *
      * @return mixed|MockInterface
      */
-    protected function resolveMock(ReflectionClass $type, string $scope = null)
+    protected function resolveMock(ReflectionClass $type, ?string $scope = null)
     {
         $name = $type->getName();
 
@@ -328,11 +329,11 @@ class Stage
      *
      * @param $name
      * @param $value
-     * @param string $scope
+     * @param string|null $scope
      *
      * @return Stage
      */
-    public function set($name, $value, string $scope = null): Stage
+    public function set($name, $value, ?string $scope = null): Stage
     {
         // If a scope is provided, we will set the value in a scope.
         if ($scope !== null) {
@@ -363,8 +364,9 @@ class Stage
     public function makeAndCall(
         string $target,
         string $methodName,
-        array $arguments = []
-    ) {
+        array  $arguments = []
+    )
+    {
         return $this->call($this->make($target), $methodName, $arguments);
     }
 
@@ -391,7 +393,8 @@ class Stage
         $target,
         string $methodName,
         array $arguments = []
-    ) {
+    )
+    {
         $reflection = new ReflectionClass($target);
 
         $resolved = $this->mockArguments(
