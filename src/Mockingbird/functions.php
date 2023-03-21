@@ -16,7 +16,8 @@ if (!function_exists('Mockingbird\stage')) {
      *
      * @return Stage
      */
-    function stage(): Stage {
+    function stage(): Stage
+    {
         return new Stage();
     }
 }
@@ -34,10 +35,11 @@ if (!function_exists('Mockingbird\on')) {
      */
     function on(
         string $methodName,
-        array $arguments,
-        $return = null,
-        int $times = 1
-    ): CallExpectation {
+        array  $arguments,
+               $return = null,
+        int    $times = 1
+    ): CallExpectation
+    {
         return new CallExpectation($methodName, $arguments, $return, $times);
     }
 }
@@ -48,7 +50,7 @@ if (!function_exists('Mockingbird\throwOn')) {
      *
      * @param string $methodName
      * @param array $arguments
-     * @param string $exceptionClass
+     * @param mixed $exceptionClass
      * @param string $exceptionMessage
      * @param int $exceptionCode
      *
@@ -56,11 +58,12 @@ if (!function_exists('Mockingbird\throwOn')) {
      */
     function throwOn(
         string $methodName,
-        array $arguments,
-        $exceptionClass,
+        array  $arguments,
+               $exceptionClass,
         string $exceptionMessage = '',
-        int $exceptionCode = 0
-    ): ThrowExpectation {
+        int    $exceptionCode = 0
+    ): ThrowExpectation
+    {
         return new ThrowExpectation(
             $methodName,
             $arguments,
@@ -80,7 +83,8 @@ if (!function_exists('Mockingbird\mock')) {
      *
      * @return MockInterface
      */
-    function mock(string $type, $expectations = []): MockInterface {
+    function mock(string $type, Closure|array $expectations = []): MockInterface
+    {
         if ($expectations instanceof Closure) {
             return Mockery::mock($type, $expectations);
         }
@@ -98,7 +102,7 @@ if (!function_exists('Mockingbird\mock')) {
 
                     $arguments = array_map(function ($arg) use ($type) {
                         if ($arg instanceof SelfReturn) {
-                            return match($type);
+                            return matching($type);
                         }
 
                         return $arg;
@@ -136,7 +140,8 @@ if (!function_exists('Mockingbird\match')) {
      *
      * @return MatcherAbstract
      */
-    function match($type): MatcherAbstract {
+    function matching($type): MatcherAbstract
+    {
         if ($type instanceof Closure) {
             return Mockery::on($type);
         }
