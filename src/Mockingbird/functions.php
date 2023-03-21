@@ -83,7 +83,7 @@ if (!function_exists('Mockingbird\mock')) {
      *
      * @return MockInterface
      */
-    function mock(string $type, Closure|array $expectations = []): MockInterface
+    function mock(string $type, $expectations = []): MockInterface
     {
         if ($expectations instanceof Closure) {
             return Mockery::mock($type, $expectations);
